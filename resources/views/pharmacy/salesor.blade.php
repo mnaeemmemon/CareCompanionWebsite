@@ -34,17 +34,33 @@
 					  </tr>
 					</thead>
 					<tbody>
-					  <tr>
-						
-						<td>Panadol</td>
-						<td>Capsule</td>
-						<td>20th Nov 2021</td>
-						<td>5th Sept 2023</td>
-						<td>Lahore</td>
-						<td>+92 21 8700320</td>
 
-					  </tr>
-					  <tr>
+
+						@for($i = 0; $i < $count; $i++)
+							<tr>
+							
+								<td>{{$prods[$i]->name}}</td>
+
+								<td>{{$prods[$i]->type->Name}}</td>
+
+								<td>{{$prods[$i]->Manufacturing_date}}</td>
+								<td>{{$prods[$i]->Expiry_date}}</td>
+								<td>Lahore</td>
+								<td>+92 21 8700320</td>
+
+								{{-- <td>Panadol</td>
+								<td>Capsule</td>
+								<td>20th Nov 2021</td>
+								<td>5th Sept 2023</td>
+								<td>Lahore</td>
+								<td>+92 21 8700320</td> --}}
+		
+							</tr>
+						@endfor
+
+					  
+
+					  {{-- <tr>
 						
 						<td>Novidat</td>
 						<td>Capsule</td>
@@ -52,7 +68,7 @@
 						<td>5th Sept 2023</td>
 						<td>Lahore</td>
 						<td>+92 21 8700320</td>
-					  </tr>
+					  </tr> --}}
 					  
 					  
 					</tbody>

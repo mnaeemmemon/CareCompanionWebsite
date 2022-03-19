@@ -44,20 +44,46 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td class="cell">#15346</td>
-										<td class="cell">Ahmed Iqbal</td>
-										<td class="cell"><span>17 Oct</span><span class="note">2:16 PM</span></td>
-										<td class="cell"><span class="badge bg-success">Delivered</span></td>
-										<td class="cell">$259.35</td>
-										<td class="cell"><a class="btn-sm app-btn-secondary" href="{{url('/orderdetails2')}}">View</a>  <a class="btn-sm btn-danger" href="#">Delete</a>
-										</td>	
-									</tr>
-									<tr>
+
+
+									@foreach($orders as $order)
+
+										<tr>
+											<td class="cell">#{{$order->id}}</td>
+											<td class="cell">{{$order->user->name}}</td>
+
+											{{-- <td class="cell"><span>17 Oct</span><span class="note">2:16 PM</span></td> --}}
+											<td class="cell">{{$order->placed_date}}</td>
+
+											@if($order->status == 'pending')
+											<td class="cell"><span class="badge bg-warning">Pending</span></td>
+											@elseif($order->status == 'delivered')
+											<td class="cell"><span class="badge bg-success">Delivered</span></td>
+											@elseif($order->status == 'cancelled')
+											<td class="cell"><span class="badge bg-danger">Cancelled</span></td>
+
+											@endif
+
+											
+
+											{{-- {{ url('pharmacyupdatemedicine',$product->id) }} --}}
+											
+											<td class="cell">${{$order->total}}</td>
+											{{-- <td class="cell"><a class="btn-sm app-btn-secondary" href="{{url('/orderdetails2')}}">View</a>  <a class="btn-sm btn-danger" href="#">Delete</a> --}}
+												<td class="cell"><a class="btn-sm app-btn-secondary" href="{{url('/orderdetails2',$order->id)}}">View</a> 
+													
+												<a class="btn-sm btn-danger" href="{{url('/deleteOrder',$order->id)}}">Delete</a>
+
+											</td>	
+										</tr>
+										
+									@endforeach
+
+
+									{{-- <tr>
 										<td class="cell">#15345</td>
 										<td class="cell">Saad ayub</td>
 										<td class="cell"><span>17 Oct</span><span class="note">2:16 PM</span></td>
-										<td class="cell"><span class="badge bg-warning">Pending</span></td>
 										<td class="cell">$259.35</td>
 										<td class="cell"><a class="btn-sm app-btn-secondary" href="{{url('/orderdetails2')}}">View</a>  <a class="btn-sm btn-danger" href="#">Delete</a>
 										</td>	
@@ -101,7 +127,7 @@
 										<td class="cell">$678.26</td>
 										<td class="cell"><a class="btn-sm app-btn-secondary" href="{{url('/orderdetails2')}}">View</a>  <a class="btn-sm btn-danger" href="#">Delete</a>
 										</td>	
-									</tr>
+									</tr> --}}
 
 								</tbody>
 							</table>
@@ -131,17 +157,43 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td class="cell">#15346</td>
+
+										@foreach($delievered as $order)
+										<tr>
+											<td class="cell">#{{$order->id}}</td>
+											<td class="cell">{{$order->user->name}}</td>
+
+											{{-- <td class="cell"><span>17 Oct</span><span class="note">2:16 PM</span></td> --}}
+											<td class="cell">{{$order->placed_date}}</td>
+
+											<td class="cell"><span class="badge bg-success">Delivered</span></td>
+
+											
+
+											{{-- {{ url('pharmacyupdatemedicine',$product->id) }} --}}
+											
+											<td class="cell">${{$order->total}}</td>
+											{{-- <td class="cell"><a class="btn-sm app-btn-secondary" href="{{url('/orderdetails2')}}">View</a>  <a class="btn-sm btn-danger" href="#">Delete</a> --}}
+												<td class="cell"><a class="btn-sm app-btn-secondary" href="{{url('/orderdetails2',$order->id)}}">View</a> 
+													
+												<a class="btn-sm btn-danger" href="{{url('/deleteOrder',$order->id)}}">Delete</a>
+
+											</td>	
+										</tr>
+										@endforeach
+
+
+										{{-- <td class="cell">#15346</td>
 										<td class="cell">Ahmed Iqbal</td>
 										<td class="cell"><span>17 Oct</span><span class="note">2:16 PM</span></td>
 										<td class="cell"><span class="badge bg-success">Delivered</span></td>
 										<td class="cell">$259.35</td>
 										<td class="cell"><a class="btn-sm btn-danger" href="#">Delete</a></td>
-										</td>	
+										</td>	 --}}
 
 									</tr>
 									
-									<tr>
+									{{-- <tr>
 										<td class="cell">#15344</td>
 										<td class="cell">Muhammad Ayub</td>
 										<td class="cell"><span class="cell-data">16 Oct</span><span class="note">01:16 AM</span></td>
@@ -149,9 +201,9 @@
 										<td class="cell">$123.00</td>
 										<td class="cell"><a class="btn-sm btn-danger" href="#">Delete</a></td>
 										</td>	
-									</tr>
+									</tr> --}}
 									
-									<tr>
+									{{-- <tr>
 										<td class="cell">#15343</td>
 										<td class="cell">Jayden Massey</td>
 										<td class="cell"><span class="cell-data">15 Oct</span><span class="note">8:07 PM</span></td>
@@ -170,7 +222,7 @@
 										<td class="cell">$678.26</td>
 										<td class="cell"><a class="btn-sm btn-danger" href="#">Delete</a></td>
 
-									</tr>
+									</tr> --}}
 
 								</tbody>
 							</table>
@@ -195,7 +247,30 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
+									@foreach($pending as $order)
+										<tr>
+											<td class="cell">#{{$order->id}}</td>
+											<td class="cell">{{$order->user->name}}</td>
+
+											{{-- <td class="cell"><span>17 Oct</span><span class="note">2:16 PM</span></td> --}}
+											<td class="cell">{{$order->placed_date}}</td>
+
+											<td class="cell"><span class="badge bg-warning">Pending</span></td>
+
+											
+
+											{{-- {{ url('pharmacyupdatemedicine',$product->id) }} --}}
+											
+											<td class="cell">${{$order->total}}</td>
+											{{-- <td class="cell"><a class="btn-sm app-btn-secondary" href="{{url('/orderdetails2')}}">View</a>  <a class="btn-sm btn-danger" href="#">Delete</a> --}}
+												<td class="cell"><a class="btn-sm app-btn-secondary" href="{{url('/orderdetails2',$order->id)}}">View</a> 
+													
+												<a class="btn-sm btn-danger" href="{{url('/deleteOrder',$order->id)}}">Delete</a>
+
+											</td>	
+										</tr>
+										@endforeach
+									{{-- <tr>
 										<td class="cell">#15345</td>
 										<td class="cell">Saad ayub</td>
 										<td class="cell"><span>17 Oct</span><span class="note">2:16 PM</span></td>
@@ -204,7 +279,7 @@
 										<td class="cell"><a class="btn-sm app-btn-secondary" href="{{url('/orderdetails2')}}">View</a> <a class="btn-sm btn-primary" href="#">Delivered</a> <a class="btn-sm btn-danger" href="#">Cancelled</a>
 										</td>	
 
-									</tr>
+									</tr> --}}
 								</tbody>
 							</table>
 						</div><!--//table-responsive-->
@@ -228,7 +303,30 @@
 								</thead>
 								<tbody>
 									
-									<tr>
+									@foreach($cancelled as $order)
+										<tr>
+											<td class="cell">#{{$order->id}}</td>
+											<td class="cell">{{$order->user->name}}</td>
+
+											{{-- <td class="cell"><span>17 Oct</span><span class="note">2:16 PM</span></td> --}}
+											<td class="cell">{{$order->placed_date}}</td>
+
+											<td class="cell"><span class="badge bg-danger">Cancelled</span></td>
+
+											
+
+											{{-- {{ url('pharmacyupdatemedicine',$product->id) }} --}}
+											
+											<td class="cell">${{$order->total}}</td>
+											{{-- <td class="cell"><a class="btn-sm app-btn-secondary" href="{{url('/orderdetails2')}}">View</a>  <a class="btn-sm btn-danger" href="#">Delete</a> --}}
+												<td class="cell"><a class="btn-sm app-btn-secondary" href="{{url('/orderdetails2',$order->id)}}">View</a> 
+													
+												<a class="btn-sm btn-danger" href="{{url('/deleteOrder',$order->id)}}">Delete</a>
+
+											</td>	
+										</tr>
+										@endforeach
+									{{-- <tr>
 											<td class="cell">#15342</td>
 										<td class="cell">Reina Brooks</td>
 										<td class="cell"><span class="cell-data">12 Oct</span><span class="note">04:23 PM</span></td>
@@ -238,7 +336,7 @@
 										<td class="cell"><a class="btn-sm app-btn-secondary" href="{{url('/orderdetails2')}}">View</a>  <a class="btn-sm btn-danger" href="#">Delete</a>
 										</td>
 
-									</tr>
+									</tr> --}}
 									
 								</tbody>
 							</table>

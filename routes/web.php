@@ -46,6 +46,8 @@ use App\Http\Controllers\Pharmacy\PharmacyupdatemedicineController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/checking',[AdminloginController::class, "checking"]);
+
 
 Route::get('/', [AdminloginController::class, "index"]);
 Route::get('/adminchat', [AdminchatController::class, "index"]);
@@ -63,19 +65,53 @@ Route::get('/adminsignup', [AdminsignupController::class, "index"]);
 Route::get('/adminuser', [AdminuserController::class, "index"]);
 
 
-Route::get('/pharmacyaccset', [PharmacyaccsetController::class, "index"]);
-Route::get('/pharmacyaddcategory', [PharmacyAddCategoryController::class, "index"]);
-Route::get('/pharmacyaddmedicine', [PharmacyAddMedicineController::class, "index"]);
-Route::get('/pharmacychat', [PharmacyChatController::class, "index"]);
+
+
+//PHARMACY
+
+//PRODUCT
+Route::post('/pharmacyaddmedicine_submit', [PharmacyAddMedicineController::class, "add_product"]);
+Route::get('/pharmacylist', [PharmacylistController::class, "index"]);  //PRODUCT READ
+Route::get('/pharmacyDeletemedicine/{id}',[PharmacyAddMedicineController::class, "delete_product"]);
+Route::post('/pharmacyUPDATEproduct', [PharmacyupdatemedicineController::class, "update_product"]);
+
+//category
+Route::post('/add_medicine', [PharmacyAddMedicineController::class, "add_category"]);
+
+//ORDER
+Route::get('/pharmacysales', [PharmacysalesController::class, "index"]);    //CRUD OF ORDER
+Route::get('/orderdetails2/{id}', [Pharmacyorderdetails2Controller::class, "index"]);
+Route::get('/deleteOrder/{id}', [PharmacysalesController::class, "delete_order"]);
+
+//DELIVERY
 Route::get('/pharmacydelivery', [PharmacyDeliveryController::class, "index"]);
+
+
+
+
+
+
+Route::get('/pharmacyaccset', [PharmacyaccsetController::class, "index"]);
+
+Route::get('/pharmacyaddcategory', [PharmacyAddCategoryController::class, "index"]);    //ADD CAT FORM PAGE.
+
+Route::get('/pharmacyaddmedicine', [PharmacyAddMedicineController::class, "index"]);    //ADD DONE IN API
+
+Route::get('/pharmacychat', [PharmacyChatController::class, "index"]);
+// Route::get('/pharmacydelivery', [PharmacyDeliveryController::class, "index"]);
 Route::get('/pharmacyhome', [PharmacyHomeController::class, "index"]);
 Route::get('/pharmacyinvoice', [PharmacyinvoiceController::class, "index"]);
 Route::get('/pharmacynotifications', [PharmacynotificationsController::class, "index"]);
 Route::get('/pharmacyresetpassword', [PharmacyresetpasswordController::class, "index"]);
-Route::get('/pharmacysales', [PharmacysalesController::class, "index"]);
+
+// Route::get('/pharmacysales', [PharmacysalesController::class, "index"]);    //CRUD OF ORDER
+
 Route::get('/pharmacysalesor', [PharmacysalesorController::class, "index"]);
 Route::get('/pharmacysignup', [PharmacysignupController::class, "index"]);
-Route::get('/pharmacylist', [PharmacylistController::class, "index"]);
+
+// Route::get('/pharmacylist', [PharmacylistController::class, "index"]);  //PRODUCT READ
+
 Route::get('/pharmacyslip', [PharmacyslipController::class, "index"]);
-Route::get('/orderdetails2', [Pharmacyorderdetails2Controller::class, "index"]);
-Route::get('/pharmacyupdatemedicine', [PharmacyupdatemedicineController::class, "index"]);
+// Route::get('/orderdetails2', [Pharmacyorderdetails2Controller::class, "index"]);
+
+Route::get('/pharmacyupdatemedicine/{id}', [PharmacyupdatemedicineController::class, "index"]);  //PRODUCTUPDATE

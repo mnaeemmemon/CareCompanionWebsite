@@ -14,10 +14,12 @@
 	<link rel="shortcut icon" href="favicon.ico">
 
 	<!-- FontAwesome JS-->
-	<script defer src="assets/plugins/fontawesome/js/all.min.js"></script>
-
+	{{-- <script defer src="assets/plugins/fontawesome/js/all.min.js"></script> --}}
+	<script defer src="{{asset('assets/plugins/fontawesome/js/all.min.js')}}"></script>
 	<!-- App CSS -->
-	<link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
+	{{-- <link id="theme-style" rel="stylesheet" href="assets/css/portal.css"> --}}
+	<link id="theme-style" rel="stylesheet" href="{{asset('assets/css/portal.css')}}">
+
 
 </head>
 
@@ -213,7 +215,7 @@
 				<a href="#" id="sidepanel-close" class="sidepanel-close d-xl-none">&times;</a>
 				<div class="app-branding">
 					<a class="app-logo" href="{{url('/pharmacyhome')}}"><img class="logo-icon me-2"
-							src="assets/images/app-logo.svg" alt="logo"></a>
+							src="{{asset('assets/images/app-logo.svg')}}" alt="logo"></a>
 
 				</div>
 				<!--//app-branding-->
@@ -224,7 +226,7 @@
 
 							<a class="nav-link active" href="{{url('/pharmacyhome')}}">
 								<span class="nav-icon">
-									<img src="assets/images/icons/home.png">
+									<img src="{{asset('assets/images/icons/home.png')}}">
 								</span>
 								<span class="nav-link-text">Overview</span>
 							</a>
@@ -238,7 +240,7 @@
 								data-bs-target="#submenu-2" aria-expanded="false" aria-controls="submenu-2">
 								<span class="nav-icon">
 									<!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-									<img src="assets/images/icons/drugs-capsules-and-pills.png">
+									<img src="{{asset('assets/images/icons/drugs-capsules-and-pills.png')}}">
 								</span>
 								<span class="nav-link-text ">Product</span>
 								<span class="submenu-arrow">
@@ -255,8 +257,8 @@
 								<ul class="submenu-list list-unstyled">
 									<li class="submenu-item"><a class="submenu-link"
 											href="{{url('/pharmacyaddmedicine')}}">Add Product</a></li>
-									<li class="submenu-item"><a class="submenu-link"
-											href="{{url('/pharmacyupdatemedicine')}}">Update Product</a></li>
+									{{-- <li class="submenu-item"><a class="submenu-link"
+											href="{{url('/pharmacyupdatemedicine')}}">Update Product</a></li> --}}
 									<li class="submenu-item"><a class="submenu-link"
 											href="{{url('/pharmacyaddcategory')}}">Add Category</a></li>
 									<li class="submenu-item"><a class="submenu-link"
@@ -270,7 +272,7 @@
 
 							<a class="nav-link" href="{{url('/pharmacysales')}}">
 								<span class="nav-icon">
-									<img src="assets/images/icons/shopping-bag.png">
+									<img src="{{asset('assets/images/icons/shopping-bag.png')}}">
 								</span>
 								<span class="nav-link-text">Orders</span>
 							</a>
@@ -282,7 +284,7 @@
 
 							<a class="nav-link" href="{{url('/pharmacysalesor')}}">
 								<span class="nav-icon">
-									<img src="assets/images/icons/sales.png">
+									<img src="{{asset('assets/images/icons/sales.png')}}">
 								</span>
 								<span class="nav-link-text">Sales</span>
 							</a>
@@ -295,7 +297,7 @@
 
 							<a class="nav-link" href="{{url('/pharmacydelivery')}}">
 								<span class="nav-icon">
-									<img src="assets/images/icons/package-box.png">
+									<img src="{{asset('assets/images/icons/package-box.png')}}">
 								</span>
 								<span class="nav-link-text">Delivery</span>
 							</a>
@@ -307,7 +309,7 @@
 
 							<a class="nav-link" href="{{url('/pharmacyinvoice')}}">
 								<span class="nav-icon">
-									<img src="assets/images/icons/shopping-bag.png">
+									<img src="{{asset('assets/images/icons/shopping-bag.png')}}">
 								</span>
 								<span class="nav-link-text">Invoice</span>
 							</a>

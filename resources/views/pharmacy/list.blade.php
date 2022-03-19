@@ -29,26 +29,58 @@
 							<th scope="col">Image</th>
 							<th scope="col">Prescription Needed</th>
 
+							<th>Action</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>1</td>
-							<td>Panadol</td>
-							<td>Headache</td>
-							<td>GlaxoSmithKline Cons</td>
-							<td>2021-12-12</td>
-							<td>2022-10-12</td>
-							<td>Active ingredient: Each tablet contains Paracetamol 500 mg.
-								Other ingredients: Maize starch, potassium sorbate (E 202), purified talc, stearic acid, povidone,
-								starch pregelatinised, hypromellose, triacetin.</td>
-							<td>500</td>
-							<td>If the patient  a, Is on long term treatment with</td>
-							<td>20</td>
-							<td><img src="../assets/images/Downloads/panadol-.jpg" style="width: 5em;"></td>
-							<td>No</td>
-						</tr>
-						<tr>
+
+						@foreach($products as $product)
+							<tr>
+								<td>{{$product->id}}</td>
+								<td>{{$product->name}}</td>
+								<td>{{$product->type->Name}}</td>
+								<td>{{$product->Manufacture}}</td>
+								<td>{{$product->Manufacturing_date}}</td>
+								<td>{{$product->Expiry_date}}</td>
+								<td>{{$product->Formula}}</td>
+								<td>{{$product->gram}}</td>
+								<td>{{$product->SideEffects}}</td>
+								<td>{{$product->Price}}</td>
+								<td><img src="{{asset('images/product_images/'.$product->image.'')}}" style="width: 5em;"></td>
+
+								{{-- <img src="{{asset('images/variant_images/'.$key->image.'')}}" width="100px"> --}}
+
+								@if($product->prescription_needed == 1)
+								<td>Yes</td>
+								@else
+								<td>No</td>
+								@endif
+								
+								<td>
+
+									{{-- <a href="{{ url('var_update',$key->id) }}">
+									  <i class="far fa-plus-square"></i>
+									</a> --}}
+									<a href="{{ url('pharmacyupdatemedicine',$product->id) }}">
+									  {{-- <i class="far fa-plus-square"></i> --}}
+									  <img src="{{asset('img/core-img/upd.jpg')}}" style="width: 26px;" alt="">
+									</a>
+	
+									<a href="{{ url('pharmacyDeletemedicine',$product->id) }}">
+									  <img src="{{asset('img/core-img/del3.jpg')}}" style="width: 26px;" alt="">
+									</a>
+								</td>
+							</tr>
+							
+							
+
+
+						@endforeach
+
+
+
+
+						{{-- <tr>
 							<td>3</td>
 							<td>Ibuprofen</td>
 							<td>Homeopathic</td>
@@ -162,7 +194,7 @@
 							<td>25</td>
 							<td><img src="../assets/images/Downloads/Flagyl.jpg" style="width: 5em;"></td>
 							<td>No</td>
-						</tr>
+						</tr> --}}
 					</tbody>
 				</table>
 
